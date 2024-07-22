@@ -1,0 +1,62 @@
+name: CI for KernelCI Dashboard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+concurrency:
+  group: ci-check-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+
+jobs:
+  setup-node:
+    if: github.event.pull_request.draft != true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Installing dependencies with pnpm
+        run: true
+
+  lint-js:
+    if: github.event.pull_request.draft != true
+    needs: setup-node
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing dependencies with pnpm
+        run: true
+
+  build-front:
+    if: github.event.pull_request.draft != true
+    needs: setup-node
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing dependencies with pnpm
+        run: true
+
+  build-django:
+    if: github.event.pull_request.draft != true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Installing dependencies with pnpm
+        run: true
+
+  deploy:
+    if: github.event.pull_request.draft != true
+    runs-on: ubuntu-latest
+    needs:
+      - lint-js
+      - build-front
+      - build-django
+    steps:
+      - name: foo
+        run: true
