@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Installing dependencies with pnpm
-        run: true
+        run: false
 
   build-django:
     if: github.event.pull_request.draft != true
