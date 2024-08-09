@@ -59,4 +59,7 @@ jobs:
       - build-django
     steps:
       - name: foo
-        run: true
+        env:
+          FOO: ${{ secrets.FOO }}
+        run: |
+          echo "$FOO"
