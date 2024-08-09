@@ -48,7 +48,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Installing dependencies with pnpm
-        run: true
+        run: false
 
   deploy:
     if: github.event.pull_request.draft != true
