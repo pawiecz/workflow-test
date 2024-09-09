@@ -23,6 +23,7 @@ jobs:
     if: github.event_name == 'push' # && github.tags == 'release/**'
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to staging
+      - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
-          echo ${{ github.tags }}
+          echo $EVENT_CONTEXT
