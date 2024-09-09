@@ -20,8 +20,9 @@ env:
 
 jobs:
   deploy-staging:
-    if: github.event_name == 'push' && github.tags == 'release/**'
+    if: github.event_name == 'push' # && github.tags == 'release/**'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to staging
         run: |
+          echo {{ github.tags }}
