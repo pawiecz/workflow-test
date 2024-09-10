@@ -25,5 +25,7 @@ jobs:
     steps:
       - env:
           EVENT_CONTEXT: ${{ toJSON(github.event) }}
+          REF: ${{ github.ref }}
+          COND: ${{ startsWith(github.ref, 'refs/tags/release/') }}
         run: |
-          echo $EVENT_CONTEXT
+          echo "$REF | $COND | $EVENT_CONTEXT"
